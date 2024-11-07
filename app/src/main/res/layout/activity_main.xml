@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/citiesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:text="List of Locations" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="CS427 Project App" />
+
+        <Switch
+            android:id="@+id/switchOrientation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Landscape" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTextCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter city name" />
+
+    <Button
+        android:id="@+id/buttonAddLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add a Location" />
+
+    <Button
+        android:id="@+id/buttonSignout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Out" />
+</LinearLayout>
