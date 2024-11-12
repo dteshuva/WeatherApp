@@ -1,21 +1,21 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
-
 android {
-    compileSdk 32
-
+    compileSdk 34
     defaultConfig {
         applicationId "edu.uiuc.cs427app"
         minSdk 29
-        targetSdk 32
+        targetSdk 34
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
 
+        // // Add Weather API key configuration
+        // buildConfigField "String", "WEATHER_API_KEY", "\"${project.findProperty('WEATHER_API_KEY') ?: ''}\""
+        // // Add GEMINI API key configuration
+        // buildConfigField "String", "GEMINI_API_KEY", "\"${project.findProperty('GEMINI_API_KEY') ?: ''}\""
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -28,21 +28,44 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+        testOptions {
+            unitTests {
+                includeAndroidResources = true
+            }
+        }
     }
 }
-
 dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.navigation:navigation-fragment:2.3.5'
-    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    // Gemini AI dependencies
+    implementation 'com.google.ai.client.generativeai:generativeai:0.1.1'
+    implementation 'com.google.guava:guava:32.1.2-android'
 
-    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    // Kotlin dependencies required by Gemini
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'androidx.core:core-ktx:1.12.0'
 
+    // Google Maps
+    implementation 'com.google.android.gms:play-services-maps:19.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.8.3'
+
+    // Testing
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.mockito:mockito-core:4.0.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    // Testing dependencies
+    testImplementation 'org.mockito:mockito-core:5.7.0'
+    testImplementation 'org.robolectric:robolectric:4.11.1'
 }
+
+// Retrieve API keys from gradle.properties
+def OPENAI_API_KEY = project.properties['OPENAI_API_KEY'] ?: ''
+def WEATHER_API_KEY = project.properties['WEATHER_API_KEY'] ?: ''

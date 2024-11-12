@@ -11,4 +11,7 @@
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="city_name_label">City: %1$s</string>
+    <string name="latitude_label">Latitude: %1$s</string>
+    <string name="longitude_label">Longitude: %1$s</string>
 </resources>

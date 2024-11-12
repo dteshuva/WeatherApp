@@ -1,56 +1,71 @@
 package edu.uiuc.cs427app;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.fragment.app.FragmentActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
-
+public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
+    private static final String TAG = "MapActivity";
     private GoogleMap mMap;
     private double latitude;
     private double longitude;
-    private ErrorService errorService;
+    private String cityName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        errorService = new ErrorService(this);
-
-        // Retrieve latitude and longitude from intent
+        // Retrieve data from Intent
         latitude = getIntent().getDoubleExtra("latitude", 0.0);
         longitude = getIntent().getDoubleExtra("longitude", 0.0);
+        cityName = getIntent().getStringExtra("cityName");
 
-        // Initialize the map
+        Log.d(TAG, "Received city data - City: " + cityName + ", Latitude: " + latitude + ", Longitude: " + longitude);
+
+        // Display latitude and longitude
+        TextView cityNameTextView = findViewById(R.id.textViewCityName);
+        TextView latitudeTextView = findViewById(R.id.textViewLatitude);
+        TextView longitudeTextView = findViewById(R.id.textViewLongitude);
+        cityNameTextView.setText(getString(R.string.city_name_label, cityName));
+        latitudeTextView.setText(getString(R.string.latitude_label, String.valueOf(latitude)));
+        longitudeTextView.setText(getString(R.string.longitude_label, String.valueOf(longitude)));
+
+        // Setup map fragment
+        setupMapFragment();
+    }
+
+    private void setupMapFragment() {
+        Log.d(TAG, "Setting up map fragment");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         } else {
-            // Handle the error if mapFragment is null
-            errorService.handleError("007", "Failed to initialize the map.");
+            Log.e(TAG, "Map fragment is null");
         }
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        Log.d(TAG, "Map is ready");
         mMap = googleMap;
 
-        // Set up camera position for the selected city
+        // Center the map on the selected city
         LatLng cityLocation = new LatLng(latitude, longitude);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cityLocation, 12));
+        Log.d(TAG, "Setting marker at: Latitude = " + latitude + ", Longitude = " + longitude);
 
-        // Enable interactivity
+        mMap.addMarker(new MarkerOptions().position(cityLocation).title("Marker in " + cityName));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cityLocation, 12)); // Adjust zoom level if needed
         mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.getUiSettings().setScrollGesturesEnabled(true);
-        mMap.getUiSettings().setZoomGesturesEnabled(true);
     }
 }

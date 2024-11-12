@@ -214,23 +214,33 @@ Meeting notes: The team met to assess completion status of Milestone 3 requireme
 <br/>
 
 
-<b>Week 6</b>
-</br>
-Members present: List the NetID of the people who attended the meeting
-</br>
-Meeting notes: Explain the overall team progress and a summary of discussion
-</br>
+## Week 6
+
+**Date:** 11/5 (Tuesday) 9:00 am
+
+## Members Present
+- keegunh2
+- likaikl2
+- ananya16
+- mishkab2
+- ffola2
+- cca6
+- teshuva2
+
+## Meeting Notes
+The team gathered to review all the essential tasks required for milestone 4 implementation. After assessing the scope and priorities, tasks were distributed among the team members.
+
+## Progress and Tasks
 | NetID          | Progress from last week         | Tasks for next week   |
-| ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-</br>
+| ---------------| -----------------------------------------------------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------|
+|mishkab2        | Added UI customization for portrait/landscape and light/dark mode and saved it to specific users. Tested code to find issues.                                          | Implement assigned features for milestone 4  |
+|keegunh2        |  Finished milestone 3. Added missing method comments. Identified an incomplete requirement (loading personalized themes for users) and redesigned theme implementation.|  Implement assigned features for milestone 4  |
+|ffola2          | Finished Milestone 3. Added Google Maps to Milestone 4.                                                                                                                | Implement assigned features for milestone 4. |
+|cca6            | Worked on overall functions and layout for milestone 4                                                                                                                 | Finish milestone 4 |
+|likaikl2        |  Finished milestone 3. Started Identify classes and methods to develop for milestone4                                                                                  | Have overall functions for milestone 4           |
+|ananya16        |  Completed milestone 3 tasks. Researched milestone 4 requirements. Started gathering information for the assigned tasks.                                               | Implement the assigned features for milestone 4. |
+|msun60          |  Completed the tasks of milestone 3. Tried to design the methods and features for milestone 4.                                                                         | Implement the assigned tasks for milestone 4     |
+|teshuva2        | Finished assigned part for milestone 3                                                                                                                                 | Implement assigned part for milestone 4           |
 
 
 <b>Week 7</b>
